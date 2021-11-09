@@ -20,7 +20,7 @@ module.exports = class envioEmail{
             from: process.env.USEREMAIL,
             to: "felipe.friedrich1996@gmail.com",
             subject: "Olá, Seja bem vindo",
-            text: "Olá, enviando um e-mail com o arquivo .env"
+            text: 'Olá, enviando um e-mail com o arquivo .env'
         });
         return res.send(envio);
     }

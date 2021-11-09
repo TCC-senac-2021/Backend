@@ -1,14 +1,15 @@
 const Usuarios = require("../database/models/usuarios");
 
-module.exports = {
-  all(req, res, next) {
+module.exports = class jogo{
+  static all(req, res, next) {
     Usuarios.findAll()
       .then((result) => {
         res.json(result);
       })
       .catch(next);
-  },
-  create(req, res, next) {
+  }
+
+  static create(req, res, next) {
     const { nome, email, empresa, categoria } = req.body;
 
     Usuarios.create({
@@ -21,5 +22,14 @@ module.exports = {
         res.status(201).json(result); //return with ID -> 201 (CREATED)
       })
       .catch(next);
-  },
+  }
+
+  static async findByPK(id) {
+      
+    const response = await Usuarios.findByPk(id)
+    return response
+}
+
+
+
 };

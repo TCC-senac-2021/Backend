@@ -1,17 +1,17 @@
-const campanha = require("../database/models/campanhas");
+const Campanhas = require("../database/models/campanhas");
 
-module.exports = {
-    all(req, res, next) {
-        campanha.findAll()
+module.exports =  class pergunta{
+   static all(req, res, next) {
+      Campanhas.findAll()
         .then((result) => {
           res.json(result);
         })
         .catch(next);
-    },
-    create(req, res, next) {
+    }
+    static create(req, res, next) {
       const { nomeDaCampanha, primeiroCupom, segundoCupom, terceiroCupom,tituloEmail,textoEmail} = req.body;
   
-      campanha.create({
+      Campanhas.create({
         nomeDaCampanha,
         primeiroCupom,
         segundoCupom,
@@ -23,5 +23,13 @@ module.exports = {
           res.status(201).json(result); //return with ID -> 201 (CREATED)
         })
         .catch(next);
-    },
+    }
+
+    static async findByPK(id) {
+      
+      const response = await Campanhas.findByPk(id)
+      return response
+  }
+
+
   };

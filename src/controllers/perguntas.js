@@ -12,6 +12,16 @@ module.exports = class pergunta{
       return response
   }
 
+  static async perguntasCampanha(campanha) {
+    const response = await Perguntas.findAll({
+      attributes: ['id', 'numeroPergunta','textoPergunta', 'alternativa1', 'alternativa2', 'alternativa3', 'alternativa4'],
+      where: {
+        idCampanha: campanha
+      }
+    });
+    return response;
+  }
+
    static async create(req, res, next) {
     const { idCampanha, numeroPergunta, textoPergunta, alternativa1,alternativa2, alternativa3, alternativa4, resposta} = req.body;
 
