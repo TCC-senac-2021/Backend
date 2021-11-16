@@ -9,9 +9,6 @@ const jogo = require("./controllers/jogo");
 routes.get('/', (request, response) => { return response.json('Funcionando') });
 
 routes.post ('/sendEmail', envioEmailControllers.envio);
-routes.get ('/usuarios', usuarios.all);
-routes.get('/campanhas', campanhas.all);
-routes.get('/perguntas', perguntas.all);
 
 routes.post ('/criarUsuario', usuarios.create);
 routes.post('/criarcampanha', campanhas.create);
@@ -19,5 +16,9 @@ routes.post('/criarPergunta', perguntas.create);
 
 routes.post('/enviopergunta', jogo.envioPergunta);
 routes.post('/conferePergunta', jogo.conferePergunta);
+
+routes.post('/gerarCampanhaAtiva',campanhas.gerarCampanhaAtiva);
+
+routes.post('/enviaCupom', jogo.enviaCupom);
 
 module.exports = routes;
