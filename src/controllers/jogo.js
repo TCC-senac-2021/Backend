@@ -27,25 +27,25 @@ module.exports = class jogo{
         }
 
         return res.status(200).send(false);
-
     }
 
     static async enviaCupom(req, res){
         
         try{
-        const {id, idCampanha, cupomGanho} = req.body;
-        const campanha = await campanhas.findByPK(idCampanha);
+        const {id, nomeCampanha, nroAcertos} = req.body;
+        const campanha = await campanhas.findByName(nomeCampanha);
         const usuario = await usuarios.findByPK(id);
-        const cupom = "semCupom"
 
-        if(cupomGanho == 3){
-            cupom = `${usuario.nome}${campanha.terceiroCupom}${usuario.id}`
-        }else if(cupomGanho == 2){
-            cupom = `${usuario.nome}${campanha.segundoCupom}${usuario.id}`
-        }else if(cupomGanho == 1){
-            cupom = `${usuario.nome}${campanha.primeiroCupom}${usuario.id}`
+        var cupom = "semCupom"
+
+        if(nroAcertos == 2){
+            cupom = `${usuario.dataValues.nome}${campanha.dataValues.terceiroCupom}${usuario.dataValues.id}`
+        }else if(nroAcertos == 3){
+            cupom = `${usuario.dataValues.nome}${campanha.dataValues.segundoCupom}${usuario.dataValues.id}`
+        }else if(nroAcertos == 4){
+            cupom = `${usuario.dataValues.nome}${campanha.dataValues.primeiroCupom}${usuario.dataValues.id}`
         }
-
+        
         return res.status(200).send(cupom);
         }catch(err){
             return res.status(400).send(err);
