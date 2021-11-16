@@ -25,9 +25,23 @@ module.exports = class jogo{
   }
 
   static async findByPK(id) {
-      
+    try{
     const response = await Usuarios.findByPk(id)
     return response
+    }catch(err){
+      return err;
+    }
+}
+
+static async findByEmpresaCategoria(empresa, categoria){
+    const response = await Usuarios.findAll({
+      where: {
+        empresa,
+        categoria
+      }
+  });
+  return response;
+
 }
 
 
