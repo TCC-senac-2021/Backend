@@ -13,11 +13,10 @@ routes.post ('/sendEmail', envioEmailControllers.envio);
 routes.post ('/criarUsuario', usuarios.create);
 routes.post('/criarcampanha', campanhas.create);
 routes.post('/criarPergunta', perguntas.create);
-
-routes.post('/conferePergunta', jogo.conferePergunta);
-
 routes.post('/gerarCampanhaAtiva',campanhas.gerarCampanhaAtiva);
 
+routes.get('/enviopergunta/:campanha', jogo.envioPergunta);
+routes.post('/conferePergunta', jogo.conferePergunta);
 routes.post('/enviaCupom', jogo.enviaCupom);
 routes.get('/start/:id', jogo.iniciaJogo);
 
