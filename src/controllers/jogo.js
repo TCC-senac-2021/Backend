@@ -5,12 +5,14 @@ const usuarios = require('./usuarios');
 
 module.exports = class jogo{
     static async envioPergunta(req, res){
-        const {idCampanha} = req.body;
+        const {campanha} = req.params;
         try{
-            const response = await perguntas.perguntasCampanha(idCampanha);
+            console.log(campanha)
+            const id = await campanhas.findByNameReturnId(campanha);
+            console.log(id);
+            const response = await perguntas.perguntasCampanha(id);
             return res.status(200).send(response)
         }catch(err){
-            console.log('AQUI')
             return res.send(err);
         }
         

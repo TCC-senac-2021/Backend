@@ -47,6 +47,19 @@ module.exports =  class campanha{
     }
     }
 
+    static async findByNameReturnId(nomeDaCampanha){
+      try{
+      const response = await Campanhas.findAll({
+        where: {
+          nomeDaCampanha
+        }
+      });
+      return response[0].dataValues.id;
+    }catch(err){
+      return err;
+    }
+    }
+
     static async gerarCampanhaAtiva(req, res){
       const { nomeDaCampanha, empresa, categoria} = req.body;
 

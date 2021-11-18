@@ -14,7 +14,6 @@ routes.post ('/criarUsuario', usuarios.create);
 routes.post('/criarcampanha', campanhas.create);
 routes.post('/criarPergunta', perguntas.create);
 
-routes.post('/enviopergunta', jogo.envioPergunta);
 routes.post('/conferePergunta', jogo.conferePergunta);
 
 routes.post('/gerarCampanhaAtiva',campanhas.gerarCampanhaAtiva);

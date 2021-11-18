@@ -12,11 +12,11 @@ module.exports = class pergunta{
       return response
   }
 
-  static async perguntasCampanha(campanha) {
+  static async perguntasCampanha(idCampanha) {
     const response = await Perguntas.findAll({
       attributes: ['id', 'numeroPergunta','textoPergunta', 'alternativa1', 'alternativa2', 'alternativa3', 'alternativa4'],
       where: {
-        idCampanha: campanha
+        idCampanha
       }
     });
     return response;
