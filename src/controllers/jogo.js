@@ -51,4 +51,15 @@ module.exports = class jogo{
             return res.status(400).send(err);
         }
     }
+
+    static async iniciaJogo(req, res){
+        try{
+            const { id } = req.params;        
+            const usuario = await usuarios.findByPK(id);
+            res.status(200).send(usuario)
+        }catch(err){
+
+        }
+        
+    }
 }
