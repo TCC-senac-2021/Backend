@@ -38,7 +38,7 @@ module.exports = class jogo{
         const campanha = await campanhas.findByName(nomeCampanha);
         const usuario = await usuarios.findByPK(id);
 
-        var cupom = "semCupom"
+        var cupom = `${usuario.dataValues.nome}Senac2021${usuario.dataValues.id}`
 
         if(nroAcertos == 2){
             cupom = `${usuario.dataValues.nome}${campanha.dataValues.terceiroCupom}${usuario.dataValues.id}`
