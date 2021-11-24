@@ -75,14 +75,14 @@ module.exports = class jogo{
 
     static async iniciaJogo(req, res){
         try{
-            const { id, nomeCampanha} = req.params;
-            //const responseCampanha = await campanhas.findByName(nomeCampanha);        
+            const { id, nomeCampanha} = req.body;
+            const responseCampanha = await campanhas.findByName(nomeCampanha);        
             const usuario = await usuarios.findByPK(id);
-            /*try{
+            try{
                 await entradaUsuario.create(id, responseCampanha.id);
             }catch(err){
                 console.log(err);
-            }*/
+            }
             res.status(200).send(usuario)
         }catch(err){
 
