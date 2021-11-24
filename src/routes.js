@@ -18,6 +18,6 @@ routes.post('/gerarCampanhaAtiva',campanhas.gerarCampanhaAtiva);
 routes.get('/enviopergunta/:campanha', jogo.envioPergunta);
 routes.post('/conferePergunta', jogo.conferePergunta);
 routes.post('/enviaCupom', jogo.enviaCupom);
-routes.post('/start', jogo.iniciaJogo);
+routes.get('/start/:id', jogo.iniciaJogo);
 
 module.exports = routes;
