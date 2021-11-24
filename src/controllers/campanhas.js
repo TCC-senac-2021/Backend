@@ -60,23 +60,11 @@ module.exports =  class campanha{
     }
     }
 
-    static async gerarCampanhaAtiva(req, res){
-      const { nomeDaCampanha, empresa, categoria} = req.body;
-
-      const campanha = await Campanhas.findAll({
-        where: {
-          nomeDaCampanha
-        }
-      });
-
-      const participantes = await UsuariosController.findByEmpresaCategoria(empresa, categoria);
-      const idCampanha = campanha[0].dataValues.id
-      
+    static async gerarCampanhaAtiva(idCampanha, participantes){
       let qtdAdicionados = 0;
       let qtdNaoAdicionados = 0;
       for(const key in participantes){
         var idUsuario = participantes[key].dataValues.id
-        
         try{
         const jacriado = await CampanhaAtiva.findAll({
           where: {
@@ -99,7 +87,19 @@ module.exports =  class campanha{
         }catch(err){
         }
       }
-      res.status(200).send("Campanha Criada, idCampanha "+ idCampanha + " \n Total de usuários adicionados: "+ qtdAdicionados + " \n Total de usuários não adicionados: "+ qtdNaoAdicionados);
+      return("Campanha Criada, idCampanha "+ idCampanha + " \n Total de usuários adicionados: "+ qtdAdicionados + " \n Total de usuários não adicionados: "+ qtdNaoAdicionados);
+
+    }
+
+    static async updateCupomCampanhaAtiva(cupom, idUsuario, idCampanha){
+      try{
+        const response = await CampanhaAtiva.update(
+          {'cupomGanho': cupom},
+          {where: {idUsuario, idCampanha}});
+          return response;
+      }catch(err){
+        return err;
+      }
 
     }
   };
