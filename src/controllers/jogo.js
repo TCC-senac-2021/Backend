@@ -53,7 +53,7 @@ module.exports = class jogo{
         const white_spaces = RegExp("(\\s+)", "gi")
         var nomeUsuario = usuario.dataValues.nome.replace(white_spaces, "");
 
-        var cupom = `${nomeUsuario}Senac2021${usuario.dataValues.id}`
+        var cupom = `${nomeUsuario}${campanha.dataValues.terceiroCupom}${usuario.dataValues.id}`
         if(nroAcertos == 2){
             cupom = `${nomeUsuario}${campanha.dataValues.terceiroCupom}${usuario.dataValues.id}`
         }else if(nroAcertos == 3){
