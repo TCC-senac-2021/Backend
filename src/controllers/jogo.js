@@ -50,15 +50,16 @@ module.exports = class jogo{
         const {id, nomeCampanha, nroAcertos} = req.body;
         const campanha = await campanhas.findByName(nomeCampanha);
         const usuario = await usuarios.findByPK(id);
+        const white_spaces = RegExp("(\\s+)", "gi")
+        var nomeUsuario = usuario.dataValues.nome.replace(white_spaces, "");
 
-        var cupom = `${usuario.dataValues.nome}Senac2021${usuario.dataValues.id}`
-
+        var cupom = `${nomeUsuario}Senac2021${usuario.dataValues.id}`
         if(nroAcertos == 2){
-            cupom = `${usuario.dataValues.nome}${campanha.dataValues.terceiroCupom}${usuario.dataValues.id}`
+            cupom = `${nomeUsuario}${campanha.dataValues.terceiroCupom}${usuario.dataValues.id}`
         }else if(nroAcertos == 3){
-            cupom = `${usuario.dataValues.nome}${campanha.dataValues.segundoCupom}${usuario.dataValues.id}`
+            cupom = `${nomeUsuario}${campanha.dataValues.segundoCupom}${usuario.dataValues.id}`
         }else if(nroAcertos == 4){
-            cupom = `${usuario.dataValues.nome}${campanha.dataValues.primeiroCupom}${usuario.dataValues.id}`
+            cupom = `${nomeUsuario}${campanha.dataValues.primeiroCupom}${usuario.dataValues.id}`
         }
 
         try{
