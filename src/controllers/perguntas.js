@@ -13,17 +13,27 @@ module.exports = class pergunta{
   }
 
   static async perguntasCampanha(idCampanha) {
+
+    var perguntas = [];
+    
+    for(var i = 0; i < 4; i++){
     const response = await Perguntas.findAll({
       attributes: ['id', 'numeroPergunta','textoPergunta', 'alternativa1', 'alternativa2', 'alternativa3', 'alternativa4'],
       where: {
-        idCampanha
+        idCampanha,
+        'numeroPergunta': i + 1
       }
     });
-    return response;
+      perguntas[i] = response[0];
+    }
+
+
+    return perguntas;
   }
 
    static async create(req, res, next) {
     const { idCampanha, numeroPergunta, textoPergunta, alternativa1,alternativa2, alternativa3, alternativa4, resposta} = req.body;
+
 
     const response = await Perguntas.create({
       idCampanha,
@@ -35,7 +45,7 @@ module.exports = class pergunta{
       alternativa4,
       resposta
       })
-      
+    
     return res.send(response);
   }
   };
