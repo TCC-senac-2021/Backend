@@ -91,6 +91,24 @@ module.exports =  class campanha{
 
     }
 
+    static async verificaUsuarioPossuiCupom(idUsuario, idCampanha){
+      try{
+        const response = await CampanhaAtiva.findAll({
+          where: {
+            idUsuario,
+            idCampanha
+          }
+        });
+        if(response[0].cupomGanho){
+          return response[0].cupomGanho;
+        }
+        return "";
+        
+      }catch(err){
+        return err;
+      }
+    }
+
     static async updateCupomCampanhaAtiva(cupom, idUsuario, idCampanha){
       try{
         const response = await CampanhaAtiva.update(

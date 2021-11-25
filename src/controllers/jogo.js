@@ -4,6 +4,7 @@ const campanhas = require('./campanhas');
 const usuarios = require('./usuarios');
 const respostasUsuarios = require('./respostasUsuarios');
 const entradaUsuario = require('./entradaUsuario');
+const campanha = require('./campanhas');
 
 
 module.exports = class jogo{
@@ -84,9 +85,13 @@ module.exports = class jogo{
             }catch(err){
                 console.log(err);
             }
+            const cupom = await campanhas.verificaUsuarioPossuiCupom(id, responseCampanha.id);
+            if(cupom.length > 0){
+                return res.status(200).send({cupom})
+            }
             res.status(200).send(usuario)
         }catch(err){
-
+            res.status(500).send(err);
         }
         
     }
