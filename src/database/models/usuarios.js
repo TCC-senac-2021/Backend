@@ -18,11 +18,11 @@ const Users = sequelize.define("usuarios", {
       allowNull: false,
     },
     empresa:{
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(50),
       allowNull: false,
     },
     categoria:{
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(50),
     },
   });
 
