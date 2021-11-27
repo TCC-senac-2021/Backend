@@ -62,6 +62,8 @@ module.exports = class jogo{
         }else if(nroAcertos == 4){
             cupom = `${nomeUsuario}${campanha.dataValues.primeiroCupom}${usuario.dataValues.id}`
         }
+        
+        cupom = cupom.toUpperCase();
 
         try{
             await campanhas.updateCupomCampanhaAtiva(cupom, usuario.dataValues.id, campanha.dataValues.id);

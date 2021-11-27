@@ -23,7 +23,7 @@ routes.post('/start/', jogo.iniciaJogo);
 
 routes.get('/dadosEntrada/:nomeCampanha', dadosJogo.dadosEntradaUsuario);
 routes.get('/dadosEnvioEmail/:nomeCampanha', dadosJogo.dadosEnvioDeEmail);
-routes.get('/dadosRepostasUsuarios/:nomeCampanha', dadosJogo.dadosRespostasUsuarios);
+routes.get('/dadosUsuarios/:nomeCampanha', dadosJogo.dadosUsuarios);
 routes.get('/dadosNumeroAcertosPorPergunta/:nomeCampanha/:numeroPergunta', dadosJogo.dadosNumeroAcertosPorPergunta);
 
 module.exports = routes;
